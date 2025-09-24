@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="خدمات مؤسسة النخيل والشبوك: توريد نخيل، تركيب شبوك، تركيب مظلات، استشارات زراعية، وصيانة شبوك بأعلى معايير الجودة.">
+  <meta name="keywords" content="نخيل, شبوك, مظلات, زراعة, توريد نخيل, تركيب شبوك, استشارات زراعية, صيانة شبوك">
+  <meta name="author" content="مؤسسة توريد نخيل وتركيب شبوك">
+  
+  <title>خدماتنا | مؤسسة النخيل والشبوك | توريد وتركيب بمهنية عالية</title>
+
+  <!-- خطوط عربية -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* RESET */
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --dark-green: #2E5E4E;
+      --light-green: #78A75A;
+      --brown: #8B5E3C;
+      --gold: #E4C067;
+      --beige: #F9F6F0;
+      --white: #FFFFFF;
+      --text-color: #1d1d1f;
+      --gray-light: #f5f5f7;
+      --gray: #86868b;
+      --transition: all 0.3s ease;
+      --border-radius: 16px;
+      --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --section-padding: 100px 20px;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--beige);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* التصميم على نمط Apple */
+    header {
+      background: var(--white);
+      color: var(--text-color);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      color: var(--light-green);
+      font-size: 28px;
+    }
+
+    header h1 {
+      font-family: 'Amiri', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dark-green);
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 5px 0;
+      font-size: 16px;
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--light-green);
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--dark-green);
+    }
+
+    nav a:hover:after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: var(--dark-green);
+    }
+
+    nav a.active:after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--dark-green);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(46, 94, 78, 0.85), rgba(46, 94, 78, 0.9)), url('https://images.unsplash.com/photo-1583454110550-ca7c24ac0c5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: var(--white);
+      padding: 120px 20px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h2 {
+      font-family: 'Amiri', serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--beige);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    section {
+      padding: var(--section-padding);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      font-family: 'Amiri', serif;
+      font-size: 40px;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      color: var(--gray);
+      max-width: 700px;
+      margin: 20px auto 0;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      width: 350px;
+      transition: var(--transition);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      height: 0;
+      background: var(--light-green);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .card:hover:before {
+      height: 100%;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .card p {
+      color: var(--gray);
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .service-features {
+      margin: 20px 0;
+      text-align: right;
+    }
+
+    .service-features li {
+      margin-bottom: 10px;
+      position: relative;
+      padding-right: 25px;
+      color: var(--dark-green);
+    }
+
+    .service-features li:before {
+      content: '✓';
+      position: absolute;
+      right: 0;
+      color: var(--light-green);
+      font-weight: bold;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
+      padding: 14px 28px;
+      background: var(--dark-green);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 30px;
+      transition: var(--transition);
+      font-weight: 500;
+      border: 1px solid transparent;
+      font-size: 16px;
+    }
+
+    a.button:hover {
+      background: transparent;
+      color: var(--dark-green);
+      border-color: var(--dark-green);
+      transform: translateY(-2px);
+    }
+
+    a.button.secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--white);
+    }
+
+    a.button.secondary:hover {
+      background: var(--white);
+      color: var(--dark-green);
+    }
+
+    /* Process Section */
+    .process {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 70px 40px;
+      margin: 60px 0;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .process-step {
+      background: var(--beige);
+      padding: 35px 25px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      position: relative;
+      border: 1px solid rgba(139, 94, 60, 0.1);
+    }
+
+    .process-step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 50px;
+      height: 50px;
+      background: var(--dark-green);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .step-icon {
+      font-size: 50px;
+      color: var(--dark-green);
+      margin-bottom: 20px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: linear-gradient(to bottom, var(--dark-green), #24493c);
+      color: var(--white);
+      padding: 100px 20px;
+      text-align: center;
+      border-radius: var(--border-radius);
+    }
+
+    .testimonials h2 {
+      color: var(--white);
+    }
+
+    .testimonials-container {
+      max-width: 1000px;
+      margin: 60px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .testimonial {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 35px;
+      border-radius: var(--border-radius);
+      width: 450px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* CTA Section */
+    .cta {
+      text-align: center;
+      background: var(--white);
+      padding: 70px 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin: 60px 0;
+    }
+
+    .cta h2 {
+      margin-bottom: 20px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 40px;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+
+    .empty-state i {
+      font-size: 60px;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+    }
+
+    .empty-state p {
+      color: var(--gray);
+      margin-bottom: 25px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-green);
+      color: var(--white);
+      padding: 80px 0 30px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-size: 22px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .footer-column p, .footer-column a {
+      color: var(--beige);
+      margin-bottom: 12px;
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column a:hover {
+      color: var(--gold);
+      padding-right: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--light-green);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--beige);
+      font-size: 14px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero h2 {
+        font-size: 36px;
+      }
+      
+      .section-header h2 {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        gap: 15px;
+      }
+      
+      nav.active {
+        display: flex;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .section-header h2 {
+        font-size: 28px;
+      }
+      
+      .card {
+        width: 100%;
+        max-width: 400px;
+      }
+      
+      .testimonial {
+        width: 100%;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+<a href="https://wa.me/508122261?text=مرحباً، أريد الاستفسار " class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <i class="logo-icon fas fa-pagelines"></i>
+        <h1>مؤسسة طريق الجودة</h1>
+      </div>
+      <nav id="mainNav">
+        <a href="/">الرئيسية</a>
+        <a href="/services" class="active">الخدمات</a>
+        <a href="/products">المنتجات</a>
+        <a href="/gallery">معرض الأعمال</a>
+        <a href="/blog">المدونة</a>
+        <a href="/contact">اتصل بنا</a>
+      </nav>
+      <button class="mobile-menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <h2>خدماتنا المتكاملة</h2>
+      <p>نقدم مجموعة متكاملة من الخدمات المتخصصة في توريد النخيل، تركيب الشبوك، والمظلات بأعلى معايير الجودة والاحترافية</p>
+      <div class="hero-buttons">
+        <a href="/contact" class="button secondary">اطلب خدمة</a>
+        <a href="#services" class="button">استكشف الخدمات</a>
+      </div>
+    </div>
+  </section>
+
+    <!-- قائمة الخدمات -->
+  <section id="services">
+    <div class="section-header">
+      <h2>خدماتنا المتاحة</h2>
+      <p>نقدم لكم مجموعة متكاملة من الخدمات المتخصصة لتلبية جميع احتياجاتكم</p>
+    </div>
+    <div class="cards">
+      {% for service in services %}
+        <div class="card fade-in">
+          {% if service.image %}
+            <img class="card-img" src="{{ service.image.url }}" alt="{{ service.title }}">
+          {% elif service.image_url %}
+            <img class="card-img" src="{{ service.image_url }}" alt="{{ service.title }}">
+          {% else %}
+            <img class="card-img" src="https://images.unsplash.com/photo-1592484206673-1a2fc66340c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="{{ service.title }}">
+          {% endif %}
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description|truncatechars:150 }}</p>
+          
+          <div class="service-features">
+            <ul>
+              <li>جودة عالية وضمان على المنتج</li>
+              <li>تركيب احترافي من قبل فنيين متخصصين</li>
+              <li>أسعار تنافسية ومناسبة</li>
+            </ul>
+          </div>
+          
+          <a href="/service/{{ service.id }}/" class="button">عرض التفاصيل</a>
+        </div>
+      {% empty %}
+        <div class="empty-state">
+          <i class="fas fa-concierge-bell"></i>
+          <h3>لا توجد خدمات متاحة حالياً</h3>
+          <p>يتم تحديث قائمة الخدمات بشكل دوري، يرجى التحقق لاحقاً أو الاتصال بنا للاستفسار عن الخدمات المتاحة.</p>
+          <a href="/contact" class="button">اتصل بنا</a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+
+  <!-- Process Section -->
+  <section class="process">
+    <div class="section-header">
+      <h2>كيفية طلب الخدمة</h2>
+      <p>خطوات بسيطة للحصول على خدماتنا بأعلى جودة</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-in">
+        <div class="step-number">1</div>
+        <div class="step-icon"><i class="fas fa-headset"></i></div>
+        <h3>الاتصال بنا</h3>
+        <p>اتصل بنا أو املأ نموذج الاتصال وسيقوم فريقنا بالرد عليك في أسرع وقت</p>
+      </div>
+      <div class="process-step fade-in delay-1">
+        <div class="step-number">2</div>
+        <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+        <h3>دراسة الاحتياجات</h3>
+        <p>نقوم بدراسة متطلباتك وتقديم الحلول والاستشارات المناسبة</p>
+      </div>
+      <div class="process-step fade-in delay-2">
+        <div class="step-number">3</div>
+        <div class="step-icon"><i class="fas fa-tools"></i></div>
+        <h3>التنفيذ</h3>
+        <p>نقوم بتنفيذ الخدمة بأعلى معايير الجودة والاحترافية</p>
+      </div>
+      <div class="process-step fade-in delay-3">
+        <div class="step-number">4</div>
+        <div class="step-icon"><i class="fas fa-thumbs-up"></i></div>
+        <h3>ضمان الجودة</h3>
+        <p>نضمن لك جودة الخدمة ونقدم خدمة ما بعد البيع والدعم الفني</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="section-header">
+      <h2>آراء عملائنا</h2>
+      <p>ثقة عملائنا هي شهادتنا الحقيقية</p>
+    </div>
+    <div class="testimonials-container">
+      <div class="testimonial fade-in">
+        <p class="testimonial-text">"تعاملت مع مؤسسة النخيل والشبوك لتركيب شبوك لمزرعتي وكانت النتيجة ممتازة، فريق محترف وخدمة ما بعد البيع متميزة."</p>
+        <p class="testimonial-author">- أحمد السبيعي</p>
+      </div>
+      <div class="testimonial fade-in delay-1">
+        <p class="testimonial-text">"نخيل ممتاز وجودة عالية في التوريد والتركيب، أنصح بالتعامل معهم لكل من يبحث عن الجودة والاحترافية."</p>
+        <p class="testimonial-author">- فاطمة العتيبي</p>
+      </div>
+      <div class="testimonial fade-in delay-2">
+        <p class="testimonial-text">"خدمة تركيب المظلات كانت رائعة، التصميم جميل والتنفيذ دقيق وفي الوقت المحدد، شكراً لكم على الاحترافية."</p>
+        <p class="testimonial-author">- محمد الرشيد</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta fade-in">
+    <h2>مستعدون لخدمتكم على مدار الساعة</h2>
+    <p>تواصل معنا اليوم للحصول على استشارة مجانية وتقديم الحلول المناسبة لاحتياجاتكم</p>
+    <a href="/contact" class="button">اتصل بنا الآن</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>عن المؤسسة</h3>
+        <p>مؤسسة متخصصة في توريد النخيل وتركيب الشبوك والمظلات، نقدم خدماتنا في جميع أنحاء المملكة العربية السعودية منذ عام 2008.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>روابط سريعة</h3>
+        <a href="/">الرئيسية</a>
+        <a href="/services" class="active">الخدمات</a>
+        <a href="/products">المنتجات</a>
+        <a href="/gallery">معرض الأعمال</a>
+        <a href="/blog">المدونة</a>
+        <a href="/contact">اتصل بنا</a>
+      </div>
+      <div class="footer-column">
+        <h3>خدماتنا</h3>
+        <a href="/services">توريد النخيل</a>
+        <a href="/services">تركيب الشبوك</a>
+        <a href="/services">تركيب المظلات</a>
+        <a href="/services">استشارات زراعية</a>
+        <a href="/services">صيانة الشبوك</a>
+        <a href="/services">تنسيق الحدائق</a>
+      </div>
+      <div class="footer-column">
+       <a href="https://wa.me/508122261?text=مرحباً، أريد الاستفسار " class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    document.getElementById('menuBtn').addEventListener('click', function() {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('active');
+    });
+    
+    // Scroll Animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElems = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      fadeElems.forEach(elem => {
+        elem.style.opacity = 0;
+        elem.style.transition = 'opacity 0.5s ease-in-out';
+        observer.observe(elem);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="اكتشف {{ product.name }} - {{ product.description|truncatewords:20 }} في مؤسسة النخيل والشبوك">
+  <meta name="keywords" content="{{ product.name }}, {{ product.category }}, سعر {{ product.name }}, مواصفات {{ product.name }}">
+  <meta name="author" content="مؤسسة توريد نخيل وتركيب شبوك">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ product.name }} - مؤسسة توريد نخيل وتركيب شبوك">
+  <meta property="og:description" content="{{ product.description|truncatewords:30 }}">
+  <meta property="og:type" content="product">
+  <meta property="og:image" content="{% if product.image %}{{ product.image.url }}{% elif product.image_url %}{{ product.image_url }}{% else %}https://example.com/logo.jpg{% endif %}">
+  
+  <title>{{ product.name }} - مؤسسة طريق الجودة | توريد وتركيب بمهنية عالية</title>
+
+  <!-- خطوط عربية -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌴</text></svg>">
+
+  <style>
+    /* RESET */
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --dark-green: #2E5E4E;
+      --light-green: #78A75A;
+      --brown: #8B5E3C;
+      --gold: #E4C067;
+      --beige: #F9F6F0;
+      --white: #FFFFFF;
+      --text-color: #1d1d1f;
+      --gray-light: #f5f5f7;
+      --gray: #86868b;
+      --transition: all 0.3s ease;
+      --border-radius: 16px;
+      --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --section-padding: 80px 20px;
+    }
+
+    body {
+      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--beige);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding-top: 80px;
+    }
+
+    /* تحسينات الأداء */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* التصميم على نمط Apple */
+    header {
+      background: rgba(255, 255, 255, 0.4);
+      color: var(--text-color);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 10px 0;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      color: var(--light-green);
+      font-size: 28px;
+    }
+
+    header h1 {
+      font-family: 'Amiri', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dark-green);
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 5px 0;
+      font-size: 16px;
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--light-green);
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--dark-green);
+    }
+
+    nav a:hover:after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: var(--dark-green);
+      font-weight: 700;
+    }
+
+    nav a.active:after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--dark-green);
+      z-index: 1001;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .breadcrumb a {
+      color: var(--dark-green);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .breadcrumb a:hover {
+      color: var(--light-green);
+      text-decoration: underline;
+    }
+
+    /* Product Detail Section */
+    .product-detail {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--section-padding);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    @media (max-width: 992px) {
+      .product-detail {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Product Gallery */
+    .product-gallery {
+      position: relative;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 15px;
+    }
+
+    .thumbnail-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .thumbnail:hover, .thumbnail.active {
+      border-color: var(--dark-green);
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--light-green);
+      color: var(--white);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    /* Product Info */
+    .product-info {
+      background: var(--white);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+
+    .product-title {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      font-family: 'Amiri', serif;
+      font-size: 2.2rem;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    .product-category {
+      color: var(--gray);
+      font-size: 14px;
+      background: var(--beige);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .product-rating {
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    .product-price {
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin: 15px 0;
+    }
+
+    .product-description {
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .product-specs {
+      margin-bottom: 25px;
+    }
+
+    .specs-title {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      font-family: 'Amiri', serif;
+      font-size: 1.3rem;
+    }
+
+    .specs-list {
+      list-style: none;
+    }
+
+    .specs-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-light);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .specs-list li:last-child {
+      border-bottom: none;
+    }
+
+    .spec-name {
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .spec-value {
+      color: var(--gray);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--dark-green);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 30px;
+      transition: var(--transition);
+      font-weight: 500;
+      border: 1px solid transparent;
+      font-size: 16px;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: transparent;
+      color: var(--dark-green);
+      border-color: var(--dark-green);
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--dark-green);
+      border: 1px solid var(--dark-green);
+    }
+
+    .button.secondary:hover {
+      background: var(--dark-green);
+      color: var(--white);
+    }
+
+    .button.whatsapp {
+      background: #25d366;
+    }
+
+    .button.whatsapp:hover {
+      background: transparent;
+      color: #25d366;
+      border-color: #25d366;
+    }
+
+    /* Related Products */
+    .related-products {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      font-family: 'Amiri', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .product-card-image {
+      transform: scale(1.05);
+    }
+
+    .product-card-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card-title {
+      color: var(--dark-green);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      font-family: 'Amiri', serif;
+    }
+
+    .product-card-price {
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-green);
+      color: var(--white);
+      padding: 80px 0 30px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-size: 22px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .footer-column p, .footer-column a {
+      color: var(--beige);
+      margin-bottom: 12px;
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column a:hover {
+      color: var(--gold);
+      padding-right: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--light-green);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--beige);
+      font-size: 14px;
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 25px;
+      left: 25px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-icon {
+      font-size: 28px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .header-container, .product-detail, .footer-content, .related-products {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .product-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 75%;
+        max-width: 300px;
+        background: var(--white);
+        flex-direction: column;
+        padding: 80px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        gap: 20px;
+        z-index: 999;
+        overflow-y: auto;
+      }
+      
+      nav.active {
+        display: flex;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .mobile-menu-btn.active i:before {
+        content: "\f00d";
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .action-buttons .button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .header-container, .product-detail, .footer-content, .related-products {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      body {
+        padding-top: 70px;
+      }
+
+      .main-image {
+        height: 300px;
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-title {
+        font-size: 1.5rem;
+      }
+      
+      .product-price {
+        font-size: 1.5rem;
+      }
+
+      .thumbnail-container {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .whatsapp-float {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/508122261?text=مرحباً، أريد الاستفسار عن المدونة" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+  <!-- HEADER -->
+  <header id="mainHeader">
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-palm-tree logo-icon"></i>
+        <h1>مؤسسة طريق الجودة</h1>
+      </div>
+      <nav id="mainNav">
+        <a href="/">الرئيسية</a>
+        <a href="/services">الخدمات</a>
+        <a href="/products">المنتجات</a>
+        <a href="/gallery">معرض الأعمال</a>
+        <a href="/blog">المدونة</a>
+        <a href="/contact">اتصل بنا</a>
+      </nav>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="فتح القائمة">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">الرئيسية</a> / <a href="/products">المنتجات</a> / {{ product.name }}
+  </div>
+
+  <!-- Product Detail Section -->
+  <section class="product-detail">
+    <div class="product-gallery fade-in">
+      <span class="product-badge">الأكثر مبيعاً</span>
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="main-image" id="mainImage" loading="lazy">
+      {% elif product.image_url %}
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="main-image" id="mainImage" loading="lazy">
+      {% else %}
+        <img src="https://images.unsplash.com/photo-1592484206673-1a2fc66340c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="{{ product.name }}" class="main-image" id="mainImage" loading="lazy">
+      {% endif %}
+      
+      <div class="thumbnail-container">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" class="thumbnail active" onclick="changeImage(this)">
+        {% endif %}
+        {% if product.image2 %}
+          <img src="{{ product.image2.url }}" alt="{{ product.name }} - صورة إضافية 1" class="thumbnail" onclick="changeImage(this)">
+        {% endif %}
+        {% if product.image3 %}
+          <img src="{{ product.image3.url }}" alt="{{ product.name }} - صورة إضافية 2" class="thumbnail" onclick="changeImage(this)">
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="product-info fade-in delay-1">
+      <h1 class="product-title">{{ product.name }}</h1>
+      
+      <div class="product-meta">
+        <span class="product-category">{{ product.category|default:"نخيل" }}</span>
+        <span class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <span>(12 تقييم)</span>
+        </span>
+      </div>
+      
+      <p class="product-price">{{ product.price }} ريال</p>
+      
+      <div class="product-description">
+        <p>{{ product.description }}</p>
+      </div>
+      
+      <div class="product-specs">
+        <h3 class="specs-title">مواصفات المنتج</h3>
+        <ul class="specs-list">
+          <li>
+            <span class="spec-name">النوع:</span>
+            <span class="spec-value">{{ product.category|default:"نخيل" }}</span>
+          </li>
+          <li>
+            <span class="spec-name">الارتفاع:</span>
+            <span class="spec-value">2-3 أمتار</span>
+          </li>
+          <li>
+            <span class="spec-name">العمر:</span>
+            <span class="spec-value">3-5 سنوات</span>
+          </li>
+          <li>
+            <span class="spec-name">المناسب لل:</span>
+            <span class="spec-value">الحدائق، المزارع، المنازل</span>
+          </li>
+          <li>
+            <span class="spec-name">مدة التوصيل:</span>
+            <span class="spec-value">3-7 أيام عمل</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="action-buttons">
+        <a href="https://wa.me/966551234567?text=أريد طلب {{ product.name }} بسعر {{ product.price }} ريال" class="button whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i> طلب عبر واتساب
+        </a>
+        <a href="/contact" class="button secondary">
+          <i class="fas fa-envelope"></i> اتصل بنا
+        </a>
+        <a href="/products" class="button">
+          <i class="fas fa-arrow-right"></i> عودة للمنتجات
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="related-products">
+  <div class="section-header fade-in">
+    <h2>منتجات ذات صلة</h2>
+    <p>اكتشف منتجات أخرى قد تهمك</p>
+  </div>
+  
+  <div class="products-grid">
+    {% for related in related_products %}
+      <div class="product-card fade-in delay-{{ forloop.counter }}">
+        {% if related.image %}
+          <img src="{{ related.image.url }}" alt="{{ related.name }}" class="product-card-image" loading="lazy">
+        {% elif related.image_url %}
+          <img src="{{ related.image_url }}" alt="{{ related.name }}" class="product-card-image" loading="lazy">
+        {% else %}
+          <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="{{ related.name }}" class="product-card-image" loading="lazy">
+        {% endif %}
+
+        <div class="product-card-content">
+          <h3 class="product-card-title">{{ related.name }}</h3>
+          <p class="product-card-price">{{ related.price }} ريال</p>
+          <a href="/product/{{ related.id }}/" class="button">عرض التفاصيل</a>
+        </div>
+      </div>
+    {% empty %}
+      <p class="fade-in">لا توجد منتجات ذات صلة حالياً.</p>
+    {% endfor %}
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>عن المؤسسة</h3>
+        <p>مؤسسة متخصصة في توريد النخيل وتركيب الشبوك والمظلات، نقدم خدماتنا في جميع أنحاء المملكة العربية السعودية منذ عام 2008.</p>
+        <div class="social-links">
+          <a href="#" aria-label="تابعنا على تويتر"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="تابعنا على إنستغرام"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="تابعنا على سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
+          <a href="#" aria-label="تابعنا على يوتيوب"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>روابط سريعة</h3>
+        <a href="/">الرئيسية</a>
+        <a href="/services">الخدمات</a>
+        <a href="/products">المنتجات</a>
+        <a href="/gallery">معرض الأعمال</a>
+        <a href="/projects">مشاريعنا</a>
+        <a href="/blog">المدونة</a>
+        <a href="/contact">اتصل بنا</a>
+      </div>
+      <div class="footer-column">
+        <h3>خدماتنا</h3>
+        <a href="/services">توريد النخيل</a>
+        <a href="/services">تركيب الشبوك</a>
+        <a href="/services">تركيب المظلات</a>
+        <a href="/services">استشارات زراعية</a>
+        <a href="/services">صيانة الشبوك</a>
+        <a href="/services">تنسيق الحدائق</a>
+      </div>
+      <div class="footer-column">
+        <h3>اتصل بنا</h3>
+        <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+        <p><i class="fas fa-phone"></i>  0508122261</p>
+        <p><i class="fas fa-clock"></i> الأحد - الخميس: 8 ص - 5 م</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>جميع الحقوق محفوظة © 2025 مؤسسة طريق الجودة</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mainNav = document.getElementById('mainNav');
+    const mainHeader = document.getElementById('mainHeader');
+    
+    menuBtn.addEventListener('click', function() {
+      mainNav.classList.toggle('active');
+      menuBtn.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (mainNav.classList.contains('active') && 
+          !mainNav.contains(event.target) && 
+          !menuBtn.contains(event.target)) {
+        mainNav.classList.remove('active');
+        menuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    });
+
+    // Change product image on thumbnail click
+    function changeImage(thumbnail) {
+      const mainImage = document.getElementById('mainImage');
+      mainImage.src = thumbnail.src;
+      mainImage.alt = thumbnail.alt;
+      
+      // Update active thumbnail
+      document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
+      });
+      thumbnail.classList.add('active');
+    }
+
+    // Scroll Animations with Intersection Observer
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElems = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.visibility = 'visible';
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      fadeElems.forEach(elem => {
+        elem.style.opacity = 0;
+        elem.style.visibility = 'hidden';
+        elem.style.transition = 'opacity 0.5s ease-in-out, visibility 0.5s';
+        observer.observe(elem);
+      });
+
+      // Lazy loading images
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.classList.add('lazy-loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+      
+      lazyImages.forEach(img => {
+        imageObserver.observe(img);
+      });
+    });
+
+    // Add loading lazy attribute to all images for better performance
+    document.querySelectorAll('img').forEach(img => {
+      if (!img.getAttribute('loading')) {
+        img.setAttribute('loading', 'lazy');
+      }
+    });
+  </script>
+</body>
+</html>

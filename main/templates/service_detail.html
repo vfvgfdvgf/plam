@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ service.meta_description|default:service.description|truncatewords:20 }}">
+  <meta name="keywords" content="نخيل, شبوك, مظلات, {{ service.title }}, {{ service.category }}, خدمات زراعية">
+  <meta name="author" content="مؤسسة توريد نخيل وتركيب شبوك">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ service.title }} - مؤسسة النخيل والشبوك">
+  <meta property="og:description" content="{{ service.description|truncatewords:30 }}">
+  <meta property="og:type" content="service">
+  {% if service.image or service.image_url %}
+  <meta property="og:image" content="{% if service.image %}{{ service.image.url }}{% else %}{{ service.image_url }}{% endif %}">
+  {% endif %}
+  
+  <title>{{ service.title }} - مؤسسة  طريق الجودة | خدمات احترافية</title>
+
+  <!-- خطوط عربية -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌴</text></svg>">
+
+  <style>
+    /* RESET */
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --dark-green: #2E5E4E;
+      --light-green: #78A75A;
+      --brown: #8B5E3C;
+      --gold: #E4C067;
+      --beige: #F9F6F0;
+      --white: #FFFFFF;
+      --text-color: #1d1d1f;
+      --gray-light: #f5f5f7;
+      --gray: #86868b;
+      --transition: all 0.3s ease;
+      --border-radius: 16px;
+      --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --section-padding: 80px 20px;
+    }
+
+    body {
+      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--beige);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding-top: 80px;
+    }
+
+    /* تحسينات الأداء */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* التصميم على نمط Apple */
+    header {
+      background: rgba(255, 255, 255, 0.4);
+      color: var(--text-color);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 10px 0;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      color: var(--light-green);
+      font-size: 28px;
+    }
+
+    header h1 {
+      font-family: 'Amiri', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dark-green);
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 5px 0;
+      font-size: 16px;
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--light-green);
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--dark-green);
+    }
+
+    nav a:hover:after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: var(--dark-green);
+      font-weight: 700;
+    }
+
+    nav a.active:after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--dark-green);
+      z-index: 1001;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .breadcrumb a {
+      color: var(--dark-green);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .breadcrumb a:hover {
+      color: var(--light-green);
+      text-decoration: underline;
+    }
+
+    /* Service Detail Section */
+    .service-detail {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--section-padding);
+    }
+
+    .service-header {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .service-image {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      margin-bottom: 30px;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .service-image:hover {
+      transform: scale(1.01);
+    }
+
+    .service-title {
+      color: var(--dark-green);
+      margin-bottom: 20px;
+      font-family: 'Amiri', serif;
+      font-size: 2.5rem;
+      line-height: 1.3;
+    }
+
+    .service-meta {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 25px 0;
+      color: var(--gray);
+      font-size: 15px;
+      flex-wrap: wrap;
+    }
+
+    .service-meta div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-content {
+      background: var(--white);
+      padding: 50px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 40px;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .service-content h2, 
+    .service-content h3, 
+    .service-content h4 {
+      color: var(--dark-green);
+      margin: 35px 0 20px;
+      font-family: 'Amiri', serif;
+    }
+
+    .service-content h2 {
+      font-size: 1.8rem;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .service-content h3 {
+      font-size: 1.5rem;
+    }
+
+    .service-content p {
+      margin-bottom: 25px;
+      text-align: justify;
+    }
+
+    .service-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+      margin: 30px 0;
+      box-shadow: var(--box-shadow);
+    }
+
+    .service-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .feature-item {
+      background: var(--beige);
+      padding: 25px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(139, 94, 60, 0.1);
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      color: var(--dark-green);
+      margin-bottom: 15px;
+    }
+
+    .feature-title {
+      color: var(--dark-green);
+      margin-bottom: 12px;
+      font-family: 'Amiri', serif;
+      font-size: 1.2rem;
+    }
+
+    /* Process Steps */
+    .process-steps {
+      margin: 50px 0;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 25px;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+
+    .step-number {
+      background: var(--dark-green);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      font-family: 'Amiri', serif;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(to bottom, var(--dark-green), #24493c);
+      color: var(--white);
+      padding: 70px 40px;
+      text-align: center;
+      border-radius: var(--border-radius);
+      margin: 60px 0;
+    }
+
+    .cta-section h2 {
+      color: var(--white);
+      margin-bottom: 20px;
+      font-family: 'Amiri', serif;
+    }
+
+    .cta-section p {
+      color: var(--beige);
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Related Services */
+    .related-services {
+      margin: 60px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      font-family: 'Amiri', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .service-card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-card-image {
+      transform: scale(1.05);
+    }
+
+    .service-card-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card-title {
+      color: var(--dark-green);
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      font-family: 'Amiri', serif;
+    }
+
+    .service-card-excerpt {
+      color: var(--gray);
+      margin-bottom: 15px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    /* Buttons */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--dark-green);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 30px;
+      transition: var(--transition);
+      font-weight: 500;
+      border: 1px solid transparent;
+      font-size: 16px;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: transparent;
+      color: var(--dark-green);
+      border-color: var(--dark-green);
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--white);
+    }
+
+    .button.secondary:hover {
+      background: var(--white);
+      color: var(--dark-green);
+    }
+
+    .button.whatsapp {
+      background: #25d366;
+    }
+
+    .button.whatsapp:hover {
+      background: transparent;
+      color: #25d366;
+      border-color: #25d366;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-green);
+      color: var(--white);
+      padding: 80px 0 30px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-size: 22px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .footer-column p, .footer-column a {
+      color: var(--beige);
+      margin-bottom: 12px;
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column a:hover {
+      color: var(--gold);
+      padding-right: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--light-green);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--beige);
+      font-size: 14px;
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 25px;
+      left: 25px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-icon {
+      font-size: 28px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .header-container, .service-detail, .footer-content {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .service-title {
+        font-size: 2rem;
+      }
+      
+      .service-content {
+        padding: 35px;
+        font-size: 17px;
+      }
+      
+      .step {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 75%;
+        max-width: 300px;
+        background: var(--white);
+        flex-direction: column;
+        padding: 80px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        gap: 20px;
+        z-index: 999;
+        overflow-y: auto;
+      }
+      
+      nav.active {
+        display: flex;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .mobile-menu-btn.active i:before {
+        content: "\f00d";
+      }
+      
+      .service-meta {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .header-container, .service-detail, .footer-content {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      body {
+        padding-top: 70px;
+      }
+
+      .service-image {
+        height: 350px;
+      }
+
+      .service-title {
+        font-size: 1.8rem;
+      }
+
+      .service-content {
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .service-content {
+        padding: 20px;
+      }
+      
+      .service-title {
+        font-size: 1.6rem;
+      }
+      
+      .service-image {
+        height: 280px;
+      }
+      
+      .cta-section {
+        padding: 50px 20px;
+      }
+      
+      .feature-item {
+        padding: 20px;
+      }
+    }
+
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .whatsapp-float {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- WhatsApp Float Button -->
+ <a href="https://wa.me/508122261?text=مرحباً، أريد الاستفسار " class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+  <!-- HEADER -->
+  <header id="mainHeader">
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-palm-tree logo-icon"></i>
+        <h1>مؤسسة طريق الجودة</h1>
+      </div>
+      <nav id="mainNav">
+        <a href="/">الرئيسية</a>
+        <a href="/services" class="active">الخدمات</a>
+        <a href="/products">المنتجات</a>
+        <a href="/blog">المدونة</a>
+        <a href="/contact">اتصل بنا</a>
+      </nav>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="فتح القائمة">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">الرئيسية</a> / <a href="/services">الخدمات</a> / {{ service.title }}
+  </div>
+
+  <!-- Service Detail Section -->
+  <div class="service-detail">
+    <div class="service-header fade-in">
+      {% if service.image %}
+        <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-image" loading="lazy">
+      {% elif service.image_url %}
+        <img src="{{ service.image_url }}" alt="{{ service.title }}" class="service-image" loading="lazy">
+      {% else %}
+        <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="{{ service.title }}" class="service-image" loading="lazy">
+      {% endif %}
+
+      <h1 class="service-title">{{ service.title }}</h1>
+      
+      <div class="service-meta">
+        <div><i class="far fa-clock"></i> مدة التنفيذ: {{ service.duration|default:"3-7 أيام" }}</div>
+        <div><i class="far fa-check-circle"></i> ضمان: {{ service.warranty|default:"12 شهر" }}</div>
+        <div><i class="far fa-user"></i> فريق متخصص</div>
+      </div>
+    </div>
+
+    <div class="service-content fade-in">
+      <p>{{ service.description }}</p>
+      
+      <h2>مميزات الخدمة</h2>
+      <div class="service-features">
+        <div class="feature-item fade-in">
+          <div class="feature-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h3 class="feature-title">جودة عالية</h3>
+          <p>نستخدم أجود المواد وأحدث التقنيات لضمان جودة العمل</p>
+        </div>
+        
+        <div class="feature-item fade-in delay-1">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="feature-title">فريق محترف</h3>
+          <p>فريق عمل متخصص ذو خبرة عالية في تنفيذ المشاريع</p>
+        </div>
+        
+        <div class="feature-item fade-in delay-2">
+          <div class="feature-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 class="feature-title">أدوات متطورة</h3>
+          <p>أحدث الأدوات والمعدات لتنفيذ العمل بدقة واحترافية</p>
+        </div>
+        
+        <div class="feature-item fade-in delay-3">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="feature-title">دعم فني</h3>
+          <p>خدمة ما بعد البيع ودعم فني متواصل لضمان رضاكم</p>
+        </div>
+      </div>
+
+      <h2>خطوات تنفيذ الخدمة</h2>
+      <div class="process-steps">
+        <div class="step fade-in">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>الاستشارة والتخطيط</h3>
+            <p>نبدأ باستشارة مفصلة لفهم احتياجاتك وتخطيط العمل المناسب لمتطلباتك وميزانيتك.</p>
+          </div>
+        </div>
+        
+        <div class="step fade-in delay-1">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>التنفيذ</h3>
+            <p>فريقنا المتخصص ينفذ العمل بدقة عالية مع الالتزام بمواصفات الجودة والسلامة.</p>
+          </div>
+        </div>
+        
+        <div class="step fade-in delay-2">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>التسليم والضمان</h3>
+            <p>نسلمك العمل مكتملاً مع ضمان شامل ومتابعة مستمرة لضمان رضاك التام.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section fade-in">
+      <h2>مستعدون لخدمتك</h2>
+      <p>تواصل معنا اليوم للحصول على استشارة مجانية وتقديم الحلول المناسبة لاحتياجاتك</p>
+      <div class="cta-buttons">
+         <a href="https://wa.me/508122261?text=مرحباً، أريد الاستفسار عن المدونة" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+        <a href="/contact" class="button secondary">
+          <i class="fas fa-envelope"></i> اتصل بنا
+        </a>
+      </div>
+    </div>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>عن المؤسسة</h3>
+        <p>مؤسسة متخصصة في توريد النخيل وتركيب الشبوك والمظلات، نقدم خدماتنا في جميع أنحاء المملكة العربية السعودية منذ عام 2008.</p>
+        <div class="social-links">
+          <a href="#" aria-label="تابعنا على تويتر"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="تابعنا على إنستغرام"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="تابعنا على سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
+          <a href="#" aria-label="تابعنا على يوتيوب"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>روابط سريعة</h3>
+        <a href="/">الرئيسية</a>
+        <a href="/services">الخدمات</a>
+        <a href="/products">المنتجات</a>
+        <a href="/blog">المدونة</a>
+        <a href="/contact">اتصل بنا</a>
+      </div>
+      <div class="footer-column">
+        <h3>خدماتنا</h3>
+        <a href="/services">توريد النخيل</a>
+        <a href="/services">تركيب الشبوك</a>
+        <a href="/services">تركيب المظلات</a>
+        <a href="/services">استشارات زراعية</a>
+        <a href="/services">صيانة الشبوك</a>
+        <a href="/services">تنسيق الحدائق</a>
+      </div>
+      <div class="footer-column">
+        <h3>اتصل بنا</h3>
+        <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+        <p><i class="fas fa-phone"></i>  0508122261</p>
+        <p><i class="fas fa-clock"></i> الأحد - الخميس: 8 ص - 5 م</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>جميع الحقوق محفوظة © 2025 مؤسسة طريق الجودة</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mainNav = document.getElementById('mainNav');
+    const mainHeader = document.getElementById('mainHeader');
+    
+    menuBtn.addEventListener('click', function() {
+      mainNav.classList.toggle('active');
+      menuBtn.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (mainNav.classList.contains('active') && 
+          !mainNav.contains(event.target) && 
+          !menuBtn.contains(event.target)) {
+        mainNav.classList.remove('active');
+        menuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll Animations with Intersection Observer
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElems = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.visibility = 'visible';
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      fadeElems.forEach(elem => {
+        elem.style.opacity = 0;
+        elem.style.visibility = 'hidden';
+        elem.style.transition = 'opacity 0.5s ease-in-out, visibility 0.5s';
+        observer.observe(elem);
+      });
+
+      // Lazy loading images
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.classList.add('l

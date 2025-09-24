@@ -1,0 +1,240 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard">
+
+  <h1 class="fade-in">📊 لوحة التحكم</h1>
+
+  <!-- الإحصائيات مع أزرار الإضافة -->
+  <div class="stats">
+    <div class="card fade-in" style="animation-delay: 0.1s;">
+      <div class="card-icon">🛒</div>
+      <div class="card-info">
+        <div class="card-title">المنتجات</div>
+        <div class="card-value">{{ total_products }}</div>
+      </div>
+      <a href="{% url 'admin:main_product_add' %}" class="add-btn">➕ إضافة منتج</a>
+    </div>
+    <div class="card fade-in" style="animation-delay: 0.2s;">
+      <div class="card-icon">🛠️</div>
+      <div class="card-info">
+        <div class="card-title">الخدمات</div>
+        <div class="card-value">{{ total_services }}</div>
+      </div>
+      <a href="{% url 'admin:main_service_add' %}" class="add-btn">➕ إضافة خدمة</a>
+    </div>
+    <div class="card fade-in" style="animation-delay: 0.3s;">
+      <div class="card-icon">📰</div>
+      <div class="card-info">
+        <div class="card-title">المقالات</div>
+        <div class="card-value">{{ total_blogs }}</div>
+      </div>
+      <a href="{% url 'admin:main_blogpost_add' %}" class="add-btn">➕ إضافة مقال</a>
+    </div>
+  </div>
+
+  <!-- الرسوم البيانية -->
+  <div class="charts fade-in" style="animation-delay: 0.4s;">
+    <canvas id="dashboardChart" height="150"></canvas>
+  </div>
+
+  <!-- أحدث العناصر -->
+  <div class="latest-section">
+    <h2 class="fade-in">🆕 أحدث المنتجات</h2>
+    <ul class="fade-in">
+      {% for p in latest_products %}
+        <li><a href="{% url 'admin:main_product_change' p.id %}">{{ p.name }}</a></li>
+      {% empty %}
+        <li>لا يوجد منتجات</li>
+      {% endfor %}
+    </ul>
+
+    <h2 class="fade-in">🆕 أحدث الخدمات</h2>
+    <ul class="fade-in">
+      {% for s in latest_services %}
+        <li><a href="{% url 'admin:main_service_change' s.id %}">{{ s.name }}</a></li>
+      {% empty %}
+        <li>لا يوجد خدمات</li>
+      {% endfor %}
+    </ul>
+
+    <h2 class="fade-in">🆕 أحدث المقالات</h2>
+    <ul class="fade-in">
+      {% for b in latest_blogs %}
+        <li><a href="{% url 'admin:main_blogpost_change' b.id %}">{{ b.title }}</a></li>
+      {% empty %}
+        <li>لا يوجد مقالات</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('dashboardChart').getContext('2d');
+const dashboardChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['المنتجات', 'الخدمات', 'المقالات'],
+        datasets: [{
+            label: 'إحصائيات الموقع',
+            data: [{{ total_products }}, {{ total_services }}, {{ total_blogs }}],
+            backgroundColor: [
+                'rgba(0, 122, 255, 0.7)',
+                'rgba(52, 199, 89, 0.7)',
+                'rgba(255, 149, 0, 0.7)'
+            ],
+            borderRadius: 8,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: { mode: 'index', intersect: false }
+        },
+        scales: {
+            y: { beginAtZero: true, grid: { color: '#f0f0f0' } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+</script>
+
+<style>
+/* --- تصميم لوحة التحكم على جهة اليسار --- */
+.dashboard {
+  padding: 40px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #1c1c1e;
+  direction: ltr;
+  text-align: left;
+  background: #f5f5f7;
+  min-height: 100vh;
+}
+
+/* --- الإحصائيات --- */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
+  justify-content: flex-start;
+}
+
+.card {
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.card-icon {
+  font-size: 45px;
+  margin-bottom: 12px;
+}
+
+.card-info .card-title {
+  font-size: 17px;
+  color: #555;
+}
+
+.card-info .card-value {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+/* --- زر الإضافة --- */
+.add-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 16px;
+  background: #007aff;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.add-btn:hover {
+  background: #0051c7;
+  transform: translateY(-2px);
+}
+
+/* --- الرسوم البيانية --- */
+.charts {
+  margin-bottom: 35px;
+}
+
+/* --- أحدث العناصر --- */
+.latest-section h2 {
+  margin-top: 35px;
+  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.latest-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 25px;
+}
+
+.latest-section li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e5ea;
+}
+
+.latest-section li a {
+  text-decoration: none;
+  color: #007aff;
+  transition: color 0.3s;
+}
+
+.latest-section li a:hover {
+  color: #0051c7;
+}
+
+/* --- الحركات والأنيميشن --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.7s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- تأثير Apple-like --- */
+h1 {
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.card, .latest-section li {
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+</style>
+{% endblock %}

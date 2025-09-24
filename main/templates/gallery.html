@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معرض الأعمال - مؤسسة طريق الجودة | توريد النخيل وتركيب الشبوك</title>
+  <meta name="description" content="مؤسسة طريق الجودة - توريد النخيل وتركيب الشبوك والمظلات. اكتشف معرض أعمالنا واستفد من خبرتنا في المجال الزراعي منذ 2008.">
+  <meta name="keywords" content="نخيل, شبوك, مظلات, زراعة, أشجار, مؤسسة طريق الجودة, تنسيق حدائق">
+  <meta name="author" content="مؤسسة طريق الجودة">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="معرض الأعمال - مؤسسة طريق الجودة">
+  <meta property="og:description" content="اكتشف معرض أعمال مؤسسة طريق الجودة في توريد النخيل وتركيب الشبوك والمظلات">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.tareeqaljoudah.com/gallery">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "مؤسسة طريق الجودة",
+    "url": "https://www.tareeqaljoudah.com",
+    "logo": "https://www.tareeqaljoudah.com/logo.png",
+    "description": "مؤسسة متخصصة في توريد النخيل وتركيب الشبوك والمظلات",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "الرياض",
+      "addressCountry": "SA"
+    },
+    "telephone": "+966-50-812-2261",
+    "openingHours": "Sun-Thu 08:00-17:00"
+  }
+  </script>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --dark-green: #2E5E4E;
+      --light-green: #78A75A;
+      --brown: #8B5E3C;
+      --gold: #E4C067;
+      --beige: #F9F6F0;
+      --white: #FFFFFF;
+      --text-color: #1d1d1f;
+      --gray-light: #f5f5f7;
+      --gray: #86868b;
+      --transition: all 0.3s ease;
+      --border-radius: 16px;
+      --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --section-padding: 100px 20px;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--beige);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* تحسينات الأداء */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* التصميم على نمط Apple */
+    header {
+      background: rgba(255, 255, 255, 0.4);
+      color: var(--text-color);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 10px 0;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      color: var(--light-green);
+      font-size: 28px;
+    }
+
+    header h1 {
+      font-family: 'Amiri', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dark-green);
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 5px 0;
+      font-size: 16px;
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--light-green);
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--dark-green);
+    }
+
+    nav a:hover:after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--dark-green);
+      z-index: 1001;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(46, 94, 78, 0.7), rgba(46, 94, 78, 0.85)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: var(--white);
+      padding: 180px 20px 120px;
+      text-align: center;
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h2 {
+      font-family: 'Amiri', serif;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--white);
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--beige);
+    }
+
+    section {
+      padding: var(--section-padding);
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      color: var(--dark-green);
+      margin-bottom: 15px;
+      font-family: 'Amiri', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      color: var(--gray);
+      max-width: 700px;
+      margin: 20px auto 0;
+      font-size: 1.125rem;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding: 14px 28px;
+      background: var(--dark-green);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 30px;
+      transition: var(--transition);
+      font-weight: 500;
+      border: 1px solid transparent;
+      font-size: 16px;
+      justify-content: center;
+    }
+
+    a.button:hover {
+      background: transparent;
+      color: var(--dark-green);
+      border-color: var(--dark-green);
+      transform: translateY(-2px);
+    }
+
+    a.button.secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--white);
+    }
+
+    a.button.secondary:hover {
+      background: var(--white);
+      color: var(--dark-green);
+    }
+
+    /* معرض الأعمال */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .gallery-card {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      background: var(--white);
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-title {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .gallery-title h3 {
+      color: var(--dark-green);
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .gallery-type {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: var(--beige);
+      color: var(--brown);
+      align-self: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .gallery-type.product {
+      background: rgba(120, 167, 90, 0.1);
+      color: var(--light-green);
+    }
+
+    .gallery-type.service {
+      background: rgba(139, 94, 60, 0.1);
+      color: var(--brown);
+    }
+
+    .gallery-type.blog {
+      background: rgba(228, 192, 103, 0.1);
+      color: var(--gold);
+    }
+
+    .gallery-card .button {
+      margin: 0 20px 20px;
+      width: calc(100% - 40px);
+    }
+
+    /* فلترة المعرض */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      background: var(--white);
+      border: 1px solid var(--gray-light);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--dark-green);
+      color: var(--white);
+      border-color: var(--dark-green);
+    }
+
+    /* قسم الأشجار الجديد */
+    .trees-section {
+      background: linear-gradient(to bottom, var(--beige) 0%, #f0ebe1 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trees-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      opacity: 0.05;
+      z-index: 0;
+    }
+
+    .trees-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tree-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .tree-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .tree-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .tree-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .tree-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .tree-card:hover .tree-image img {
+      transform: scale(1.1);
+    }
+
+    .tree-info {
+      padding: 25px;
+    }
+
+    .tree-info h3 {
+      color: var(--dark-green);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .tree-info p {
+      color: var(--gray);
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    .tree-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tree-feature {
+      background: rgba(120, 167, 90, 0.1);
+      color: var(--light-green);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-green);
+      color: var(--white);
+      padding: 80px 0 30px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-size: 22px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .footer-column p, .footer-column a {
+      color: var(--beige);
+      margin-bottom: 12px;
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column a:hover {
+      color: var(--gold);
+      padding-right: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--light-green);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--beige);
+      font-size: 14px;
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 25px;
+      left: 25px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-icon {
+      font-size: 28px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 100px auto 20px;
+      padding: 0 20px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .breadcrumb a {
+      color: var(--dark-green);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .slide-in-left {
+      animation: slideInLeft 0.8s ease forwards;
+    }
+    
+    .slide-in-right {
+      animation: slideInRight 0.8s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1s; }
+    .delay-6 { animation-delay: 1.2s; }
+
+    /* Loading Animation */
+    .loader {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background: var(--white);
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .loader:after {
+      content: " ";
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 6px solid var(--dark-green);
+      border-color: var(--dark-green) transparent var(--dark-green) transparent;
+      animation: loader 1.2s linear infinite;
+    }
+
+    @keyframes loader {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      
+      .hero {
+        padding: 150px 20px 100px;
+        min-height: 50vh;
+      }
+      
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+      
+      .tree-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 75%;
+        max-width: 300px;
+        background: var(--white);
+        flex-direction: column;
+        padding: 80px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        gap: 20px;
+        z-index: 999;
+        overflow-y: auto;
+      }
+      
+      nav.active {
+        display: flex;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .mobile-menu-btn.active i:before {
+        content: "\f00d";
+      }
+      
+      section {
+        padding: 60px 20px;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-header h2 {
+        font-size: 1.75rem;
+      }
+      
+      .gallery-filters {
+        gap: 10px;
+      }
+      
+      .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      
+      .hero {
+        padding: 130px 20px 80px;
+        min-height: 40vh;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .breadcrumb {
+        margin-top: 80px;
+      }
+      
+      .tree-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-header h2 {
+        font-size: 1.5rem;
+      }
+      
+      .section-header p {
+        font-size: 1rem;
+      }
+      
+      .hero {
+        padding: 120px 20px 60px;
+        min-height: 30vh;
+      }
+      
+      .hero h2 {
+        font-size: 1.75rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .breadcrumb {
+        margin-top: 70px;
+      }
+    }
+
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .whatsapp-float {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div class="loader" id="pageLoader"></div>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/966508122261?text=مرحباً، أريد الاستفسار عن خدماتكم" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+  <!-- HEADER -->
+  <header id="mainHeader">
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-tree logo-icon"></i>
+        <h1>مؤسسة طريق الجودة</h1>
+      </div>
+      <nav id="mainNav">
+        <a href="/">الرئيسية</a>
+        <a href="/services">الخدمات</a>
+        <a href="/products">المنتجات</a>
+        <a href="/gallery" class="active">معرض الأعمال</a>
+        <a href="/blog">المدونة</a>
+        <a href="/contact">اتصل بنا</a>
+      </nav>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="فتح القائمة">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">الرئيسية</a> / <span>معرض الأعمال</span>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <h2>معرض أعمالنا</h2>
+      <p>اكتشف مجموعة من مشاريعنا الناجحة في توريد النخيل وتركيب الشبوك والمظلات</p>
+      <a href="#gallery" class="button secondary">استكشف المعرض</a>
+    </div>
+  </section>
+
+  <section>
+  <div class="section-header fade-in">
+    <h2>معرض الأعمال</h2>
+    <p>شاهد مجموعة من أعمالنا في المنتجات، الخدمات، والمدونة</p>
+  </div>
+
+  <!-- فلترة المعرض -->
+  <div class="gallery-filters fade-in">
+    <button class="filter-btn active" data-filter="all">الكل</button>
+    <button class="filter-btn" data-filter="product">المنتجات</button>
+    <button class="filter-btn" data-filter="service">الخدمات</button>
+    <button class="filter-btn" data-filter="blog">المدونة</button>
+  </div>
+
+  <div class="gallery-grid">
+    {% for img in gallery_images %}
+      <div class="gallery-card fade-in" data-type="{{ img.type }}">
+        <img src="{{ img.image }}" alt="{{ img.title }}" loading="lazy">
+        <div class="gallery-title">
+          <h3>{{ img.title }}</h3>
+          <span class="gallery-type {{ img.type }}">
+            {% if img.type == 'product' %}منتج{% elif img.type == 'service' %}خدمة{% elif img.type == 'blog' %}مقال{% else %}معرض{% endif %}
+          </span>
+        </div>
+  
+      </div>
+    {% empty %}
+      <p class="fade-in">لا توجد صور في المعرض حالياً.</p>
+    {% endfor %}
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>عن المؤسسة</h3>
+        <p>مؤسسة متخصصة في توريد النخيل وتركيب الشبوك والمظلات، نقدم خدماتنا في جميع أنحاء المملكة العربية السعودية منذ عام 2008.</p>
+        <div class="social-links">
+          <a href="#" aria-label="تابعنا على تويتر"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="تابعنا على إنستغرام"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="تابعنا على سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
+          <a href="#" aria-label="تابعنا على يوتيوب"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>روابط سريعة</h3>
+        <a href="/">الرئيسية</a>
+        <a href="/services">الخدمات</a>
+        <a href="/products">المنتجات</a>
+        <a href="/gallery">معرض الأعمال</a>
+        <a href="/blog">المدونة</a>
+        <a href="/contact">اتصل بنا</a>
+      </div>
+      <div class="footer-column">
+        <h3>خدماتنا</h3>
+        <a href="/services">توريد النخيل</a>
+        <a href="/services">تركيب الشبوك</a>
+        <a href="/services">تركيب المظلات</a>
+        <a href="/services">استشارات زراعية</a>
+        <a href="/services">صيانة الشبوك</a>
+        <a href="/services">تنسيق الحدائق</a>
+      </div>
+      <div class="footer-column">
+          <h3>اتصل بنا</h3>
+        <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+        <p><i class="fas fa-phone"></i> 0508122261</p>
+        <p><i class="fas fa-envelope"></i> info@tareeqaljoudah.com</p>
+        <p><i class="fas fa-clock"></i> الأحد - الخميس: 8 ص - 5 م</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>جميع الحقوق محفوظة © 2025 مؤسسة طريق الجودة</p>
+    </div>
+  </footer>
+
+  <script>
+    // بيانات معرض الأعمال
+    const galleryData = [
+     
+    ];
+
+    // توليد معرض الأعمال ديناميكياً
+    function generateGallery() {
+      const galleryGrid = document.querySelector('.gallery-grid');
+      
+      galleryData.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = `gallery-card fade-in delay-${index % 6 + 1}`;
+        card.setAttribute('data-type', item.type);
+        
+        const typeText = item.type === 'product' ? 'منتج' : 
+                        item.type === 'service' ? 'خدمة' : 
+                        item.type === 'blog' ? 'مقال' : 'معرض';
+        
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" loading="lazy">
+          <div class="gallery-title">
+            <h3>${item.title}</h3>
+            <span class="gallery-type ${item.type}">${typeText}</span>
+            <p>${item.description}</p>
+          </div>
+          <a href="/${item.type}/${item.id}/" class="button">عرض التفاصيل</a>
+        `;
+        
+        galleryGrid.appendChild(card);
+      });
+    }
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mainNav = document.getElementById('mainNav');
+    const mainHeader = document.getElementById('mainHeader');
+    
+    menuBtn.addEventListener('click', function() {
+      mainNav.classList.toggle('active');
+      menuBtn.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (mainNav.classList.contains('active') && 
+          !mainNav.contains(event.target) && 
+          !menuBtn.contains(event.target)) {
+        mainNav.classList.remove('active');
+        menuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    });
+
+    // فلترة المعرض
+    function initGalleryFilters() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const galleryCards = document.querySelectorAll('.gallery-card');
+      
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // إزالة النشاط من جميع الأزرار
+          filterBtns.forEach(b => b.classList.remove('active'));
+          // إضافة النشاط للزر المختار
+          this.classList.add('active');
+          
+          const filterValue = this.getAttribute('data-filter');
+          
+          // تصفية العناصر
+          galleryCards.forEach(card => {
+            if (filterValue === 'all' || card.getAttribute('data-type') === filterValue) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+    
+    // تأثير الظهور عند التمرير
+    function initScrollAnimations() {
+      const fadeElems = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.visibility = 'visible';
+            entry.target.style.transform = 'translateY(0) translateX(0)';
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      fadeElems.forEach(elem => {
+        elem.style.opacity = 0;
+        elem.style.visibility = 'hidden';
+        elem.style.transition = 'opacity 0.5s ease-in-out, visibility 0.5s, transform 0.5s ease';
+        observer.observe(elem);
+      });
+    }
+
+    // إخفاء شاشة التحميل بعد تحميل الصفحة
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loader = document.getElementById('pageLoader');
+        if (loader) {
+          loader.style.display = 'none';
+        }
+      }, 1000);
+    });
+
+    // تهيئة جميع الوظائف عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+      generateGallery();
+      initGalleryFilters();
+      initScrollAnimations();
+      
+      // Add loading lazy attribute to all images for better performance
+      document.querySelectorAll('img').forEach(img => {
+        if (!img.getAttribute('loading')) {
+          img.setAttribute('loading', 'lazy');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
