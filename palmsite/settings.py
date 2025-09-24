@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-n3ej-529nd_ofygu044*)w236=i8t((=to#8^imtu^f@z#p3lt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://tariqaljoda.com"]  # مؤقتاً مفتوح لكل الهوستات
+ALLOWED_HOSTS = ["*"]  # مؤقتاً مفتوح لكل الهوستات
 
 
 # Application definition
