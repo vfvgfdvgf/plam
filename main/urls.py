@@ -37,8 +37,4 @@ urlpatterns = [
 
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django-sitemap'),
 ]
-# معالجة أي رابط غير موجود
-def redirect_to_home(request, exception=None):
-    return redirect('home')  # نفترض عندك صفحة رئيسية باسم home
 
-handler404 = redirect_to_home
