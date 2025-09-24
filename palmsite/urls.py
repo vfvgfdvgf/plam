@@ -16,7 +16,4 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# التقاط أي رابط غير معروف وإعادة توجيهه للصفحة الرئيسية
-urlpatterns += [
-    re_path(r'^.*$', lambda request: redirect('home')),
-]
+
