@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /private/
+Disallow: /cgi-bin/
+
+# السماح بفهرسة باقي الموقع
+Allow: /
+
+# خريطة الموقع (إذا لديك sitemap)
+Sitemap: https://plam.onrender.com/sitemap.xml
